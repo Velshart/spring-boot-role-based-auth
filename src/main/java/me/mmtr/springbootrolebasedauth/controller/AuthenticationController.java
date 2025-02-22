@@ -4,7 +4,7 @@ import me.mmtr.springbootrolebasedauth.data.User;
 import me.mmtr.springbootrolebasedauth.data.dto.UserDTO;
 import me.mmtr.springbootrolebasedauth.enums.RoleName;
 import me.mmtr.springbootrolebasedauth.repository.UserRepository;
-import me.mmtr.springbootrolebasedauth.service.AuthenticationService;
+import me.mmtr.springbootrolebasedauth.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AuthenticationController {
 
-    private final AuthenticationService authenticationService;
+    private final UserService userService;
     private final UserRepository userRepository;
 
-    public AuthenticationController(AuthenticationService authenticationService,
+    public AuthenticationController(UserService userService,
                                     UserRepository userRepository) {
-        this.authenticationService = authenticationService;
+        this.userService = userService;
         this.userRepository = userRepository;
     }
 
@@ -59,7 +59,7 @@ public class AuthenticationController {
             return "register";
         }
 
-        authenticationService.registerUser(userDTO, RoleName.USER);
+        userService.registerUser(userDTO, RoleName.USER);
         return "redirect:/login";
     }
 }

@@ -12,15 +12,15 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AuthenticationService {
+public class UserService {
 
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthenticationService(RoleRepository roleRepository,
-                                 UserRepository userRepository,
-                                 PasswordEncoder passwordEncoder) {
+    public UserService(RoleRepository roleRepository,
+                       UserRepository userRepository,
+                       PasswordEncoder passwordEncoder) {
         this.roleRepository = roleRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;

@@ -4,7 +4,7 @@ import me.mmtr.springbootrolebasedauth.data.User;
 import me.mmtr.springbootrolebasedauth.data.dto.UserDTO;
 import me.mmtr.springbootrolebasedauth.enums.RoleName;
 import me.mmtr.springbootrolebasedauth.repository.UserRepository;
-import me.mmtr.springbootrolebasedauth.service.AuthenticationService;
+import me.mmtr.springbootrolebasedauth.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,16 +20,18 @@ import java.util.Optional;
 public class AdminSeeder implements ApplicationListener<ContextRefreshedEvent> {
 
     private static final Logger logger = LoggerFactory.getLogger(AdminSeeder.class);
-    private final AuthenticationService authenticationService;
+    private final UserService userService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
     @Value("${ADMIN_ACCOUNT_USERNAME}")
     private String adminUsername;
+
     @Value("${ADMIN_ACCOUNT_PASSWORD}")
     private String adminPassword;
 
-    public AdminSeeder(AuthenticationService authenticationService, UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.authenticationService = authenticationService;
+    public AdminSeeder(UserService userService, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userService = userService;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -43,7 +45,7 @@ public class AdminSeeder implements ApplicationListener<ContextRefreshedEvent> {
         Optional<User> userOptional = userRepository.findByUsername(adminUsername);
 
         if (userOptional.isEmpty()) {
-            authenticationService.registerUser(new UserDTO(adminUsername, adminPassword), RoleName.ADMIN);
+            userService.registerUser(new UserDTO(adminUsername, adminPassword), RoleName.ADMIN);
             logger.info("Admin account created: {}", adminUsername);
 
         } else {
