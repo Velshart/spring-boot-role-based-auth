@@ -103,7 +103,7 @@ public class AuthenticationControllerTests {
     @Test
     public void shouldReturnRegistrationFormWithErrorWhenUsernameExists() throws Exception {
         when(userRepository.findByUsername(anyString())).thenReturn(Optional.of(new User(1L,
-                "testUsername", "testPassword", new Role())));
+                "username", "password", new Role())));
 
         mockMvc.perform(post("/register")
                         .param("username", "username")
