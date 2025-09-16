@@ -1,4 +1,4 @@
-package me.mmtr.springbootrolebasedauth.data;
+package me.mmtr.springbootrolebasedauth.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -31,6 +31,11 @@ public class User implements UserDetails {
     @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
     private Role role;
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

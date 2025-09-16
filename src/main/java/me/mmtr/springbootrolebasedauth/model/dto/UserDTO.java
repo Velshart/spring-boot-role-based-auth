@@ -1,4 +1,4 @@
-package me.mmtr.springbootrolebasedauth.data.dto;
+package me.mmtr.springbootrolebasedauth.model.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;

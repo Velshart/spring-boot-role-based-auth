@@ -1,7 +1,7 @@
 package me.mmtr.springbootrolebasedauth.controller;
 
-import me.mmtr.springbootrolebasedauth.data.User;
-import me.mmtr.springbootrolebasedauth.data.dto.UserDTO;
+import me.mmtr.springbootrolebasedauth.model.User;
+import me.mmtr.springbootrolebasedauth.model.dto.UserDTO;
 import me.mmtr.springbootrolebasedauth.enums.RoleName;
 import me.mmtr.springbootrolebasedauth.repository.UserRepository;
 import me.mmtr.springbootrolebasedauth.service.UserService;
@@ -29,7 +29,6 @@ public class AuthenticationController {
     public String login(Model model,
                         @RequestParam(value = "error", required = false) String error,
                         @RequestParam(value = "logout", required = false) String logout) {
-
         if (error != null) {
             model.addAttribute("error", "Incorrect username or password provided");
         }
@@ -63,3 +62,4 @@ public class AuthenticationController {
         return "redirect:/login";
     }
 }
+

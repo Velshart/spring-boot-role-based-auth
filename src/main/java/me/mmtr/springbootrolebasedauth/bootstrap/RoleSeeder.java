@@ -1,6 +1,6 @@
 package me.mmtr.springbootrolebasedauth.bootstrap;
 
-import me.mmtr.springbootrolebasedauth.data.Role;
+import me.mmtr.springbootrolebasedauth.model.Role;
 import me.mmtr.springbootrolebasedauth.enums.RoleName;
 import me.mmtr.springbootrolebasedauth.repository.RoleRepository;
 import org.springframework.context.ApplicationListener;
@@ -12,29 +12,27 @@ import java.util.Arrays;
 import java.util.Optional;
 
 @Component
-public class RoleSeeder implements ApplicationListener<ContextRefreshedEvent> {
-
-    private final RoleRepository roleRepository;
+public class RoleSeeder extends Seeder implements ApplicationListener<ContextRefreshedEvent> {
 
     public RoleSeeder(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
+        super(roleRepository);
     }
 
     @Override
     public void onApplicationEvent(@NonNull ContextRefreshedEvent event) {
-        loadRolesToDatabase();
+        super.onApplicationEvent(event);
     }
 
-    private void loadRolesToDatabase() {
-        Arrays.stream(RoleName.values())
-                .forEach(roleName -> {
-                    Optional<Role> roleOptional = roleRepository.findByRoleName(roleName);
-                    if (roleOptional.isEmpty()) {
-                        Role role = new Role();
-                        role.setRoleName(roleName);
+    @Override
+    void seed() {
+        Arrays.stream(RoleName.values()).forEach(roleName -> {
+            Optional<Role> roleOptional = roleRepository.findByRoleName(roleName);
 
-                        roleRepository.save(role);
-                    }
-                });
+            if (roleOptional.isEmpty()) {
+                Role role = new Role();
+                role.setRoleName(roleName);
+                roleRepository.save(role);
+            }
+        });
     }
 }

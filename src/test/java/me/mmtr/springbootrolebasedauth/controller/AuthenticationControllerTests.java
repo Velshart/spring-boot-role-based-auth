@@ -1,11 +1,11 @@
 package me.mmtr.springbootrolebasedauth.controller;
 
-import me.mmtr.springbootrolebasedauth.data.Role;
-import me.mmtr.springbootrolebasedauth.data.User;
-import me.mmtr.springbootrolebasedauth.data.dto.UserDTO;
+import me.mmtr.springbootrolebasedauth.model.Role;
+import me.mmtr.springbootrolebasedauth.model.User;
+import me.mmtr.springbootrolebasedauth.model.dto.UserDTO;
 import me.mmtr.springbootrolebasedauth.enums.RoleName;
 import me.mmtr.springbootrolebasedauth.repository.UserRepository;
-import me.mmtr.springbootrolebasedauth.service.UserService;
+import me.mmtr.springbootrolebasedauth.service.UserServiceImplementation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,7 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AuthenticationControllerTests {
 
     @Mock
-    private UserService userService;
+    private UserServiceImplementation userService;
 
     @Mock
     private UserRepository userRepository;

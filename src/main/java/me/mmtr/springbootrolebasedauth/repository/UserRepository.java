@@ -1,6 +1,6 @@
 package me.mmtr.springbootrolebasedauth.repository;
 
-import me.mmtr.springbootrolebasedauth.data.User;
+import me.mmtr.springbootrolebasedauth.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

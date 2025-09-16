@@ -1,4 +1,4 @@
-package me.mmtr.springbootrolebasedauth.data;
+package me.mmtr.springbootrolebasedauth.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package me.mmtr.springbootrolebasedauth.configuration;
 
-import me.mmtr.springbootrolebasedauth.data.User;
+import me.mmtr.springbootrolebasedauth.model.User;
 import me.mmtr.springbootrolebasedauth.handler.LoginSuccessHandler;
 import me.mmtr.springbootrolebasedauth.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
